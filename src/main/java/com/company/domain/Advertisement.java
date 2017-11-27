@@ -4,9 +4,8 @@ package com.company.domain;
 import java.util.UUID;
 
 public class Advertisement {
-
-	private UUID id = UUID.randomUUID();
-	private long createdOn = System.currentTimeMillis();
+	private UUID id;
+	private long createdOn;
 	private String name;
 	private String source;
 	private String category;
@@ -15,8 +14,24 @@ public class Advertisement {
 		return id;
 	}
 
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
 	public long getCreatedOn() {
 		return createdOn;
+	}
+
+	public void setCreatedOn(long createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getSource() {
@@ -33,14 +48,6 @@ public class Advertisement {
 
 	public void setCategory(String category) {
 		this.category = category;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@Override
