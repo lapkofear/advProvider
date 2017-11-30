@@ -2,6 +2,7 @@ package com.company.service;
 
 import com.company.domain.Advertisement;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@RefreshScope
 public class AdvertisementService {
 	private static final long EXECUTION_DELAY = 25L;
 
@@ -20,10 +22,10 @@ public class AdvertisementService {
 	private RestTemplate restTemplate;
 	private ScheduledExecutorService executorService;
 
-	public AdvertisementService(
-			@Value("${advertisement.store.url}") String advertisementStoreUrl,
-			@Value("${executors.pool.size}") String poolSize) {
 
+	public AdvertisementService(
+			@Value("${advertisementStoreUrl}") String advertisementStoreUrl,
+			@Value("${executorsPoolSize}") String poolSize) {
 		this.restTemplate = new RestTemplate();
 		this.advertisementStoreUrl = advertisementStoreUrl;
 		this.executorService = Executors.newScheduledThreadPool(Integer.valueOf(poolSize));
